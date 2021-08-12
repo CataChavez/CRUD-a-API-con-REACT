@@ -11,18 +11,18 @@ const UserContainer = () => {
     }, [])
     return(
         <div>
-            <h1>
+            <h2>
                 Users
-            </h1>
+            </h2>
         <div>
             {users.data.length > 1 &&
             users.data.map((user) => (
-                <div key={user.id}>
+                <h5 key={user.id}>
                     {/* <button onClick={editUserStart}>Edit</button>*/}
                         <div>{user.name}</div>
                         <div>{user.username}</div>
                     {/*<button onClick={deleteUserStart}>Delete</button> */}
-                </div>
+                </h5>
             ))}
         </div>
     </div>
