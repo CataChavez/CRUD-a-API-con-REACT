@@ -18,10 +18,14 @@ const UserContainer = () => {
             {users.data.length > 1 &&
             users.data.map((user) => (
                 <h5 key={user.id}>
-                    {/* <button onClick={editUserStart}>Edit</button>*/}
+
+                    
                         <div>{user.name}</div>
+                    <button className="btn btn-warning">Edit</button> {/*onClick={editUserStart} */}
+                    <button className="btn btn-danger">Delete</button> {/*onClick={deleteUserStart} */}
                         <div>{user.username}</div>
-                    {/*<button onClick={deleteUserStart}>Delete</button> */}
+                    <button className="btn btn-warning">Edit</button> {/*onClick={editUserStart} */}
+                    <button className="btn btn-danger">Delete</button> {/*onClick={deleteUserStart} */}
                 </h5>
             ))}
         </div>
