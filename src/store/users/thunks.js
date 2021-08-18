@@ -2,8 +2,12 @@ import {
     fetchUsersFailure,
     fetchUsersStart,
     fetchUsersSucces,
+    deleteUserFailure,
+    deleteUserStart,
+    deleteUserSuccess
 } from './actions';
 
+//Fetch
 export const fetchUsersStartThunk = () => {
     return async (dispatch, getState) => {
         const { users } = getState();
@@ -20,4 +24,19 @@ export const fetchUsersStartThunk = () => {
     };
 };
 
-export default fetchUsersStartThunk;
+//Delete
+export const deleteUserStartThunk = (id) => {
+    return async (dispatch, getState) => {
+        dispatch(deleteUserStart());
+        try{
+            const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+                method: 'DELETE'
+            })
+            const data = await response.json();
+            dispatch(deleteUserSuccess(id))//luego que la api borra al usuario, tenemos que borrarla del estado
+        } catch (error) {
+            dispatch(deleteUserFailure(error.message))
+        }
+
+    }
+}
