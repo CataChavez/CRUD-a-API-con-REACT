@@ -22,56 +22,56 @@ const usersReducer = (state = initialState, action) => {
     case FETCH_USERS_START:
       return {
         ...state,
-        isLoading: true,
+        isLoading: 'loading',
       };
     case FETCH_USERS_SUCCESS:
       return {
         ...state,
-        isLoading: false,
+        isLoading: 'succeeded',
         data: action.payload,
       };
     case FETCH_USERS_FAILURE:
       return {
         ...state,
         errorMessage: action.payload,
-        isLoading: false,
+        isLoading: 'failed',
         data: [],
       };
       case DELETE_USER_START:
         return{
             ...state,
-            isLoading: true,
+            isLoading: 'loading',
         };
     case DELETE_USER_SUCCESS:
         return{
             ...state,
-            isLoading: false,
+            isLoading: 'succeeded',
             data: state.data.filter((user) => user.id !== parseInt(action.payload)), //aca hace el filtro para mostrar los usuarios sin el id borrado
         };
     case DELETE_USER_FAILURE:
         return{
             ...state,
             errorMessage: action.payload,
-            isLoading: false,
+            isLoading: 'failed',
             data: [],
         };
 
     case CREATE_USER_REQUEST:
       return {
         ...state,
-        isLoading: true,
+        isLoading: 'loading',
       };
     case CREATE_USER_SUCCESS:
       return {
         ...state,
-        isLoading: false,
-        data: [ ...state.data, action.payload ]
+        isLoading: 'succeeded',
+        data: [ ...state.data, action.payload ]//el estado actual y la accion del payload
       };
     case CREATE_USER_FAILURE:
       return {
         ...state,
         errorMessage: action.payload,
-        isLoading: false,
+        isLoading: 'failed',
       };
     
 
