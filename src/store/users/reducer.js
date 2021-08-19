@@ -4,7 +4,10 @@ import {
   FETCH_USERS_FAILURE,
   DELETE_USER_START,
   DELETE_USER_SUCCESS,
-  DELETE_USER_FAILURE
+  DELETE_USER_FAILURE,
+  CREATE_USER_REQUEST,
+  CREATE_USER_SUCCESS,
+  CREATE_USER_FAILURE
 } from "./constants";
 
 const initialState = {
@@ -52,6 +55,25 @@ const usersReducer = (state = initialState, action) => {
             isLoading: false,
             data: [],
         };
+
+    case CREATE_USER_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case CREATE_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        data: [ ...state.data, action.payload ]
+      };
+    case CREATE_USER_FAILURE:
+      return {
+        ...state,
+        errorMessage: action.payload,
+        isLoading: false,
+      };
+    
 
     default:
       return state;

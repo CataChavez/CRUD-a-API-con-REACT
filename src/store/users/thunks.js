@@ -4,7 +4,10 @@ import {
     fetchUsersSucces,
     deleteUserFailure,
     deleteUserStart,
-    deleteUserSuccess
+    deleteUserSuccess,
+    createUserRequest,
+    createUserSuccess,
+    createUserFailure
 } from './actions';
 
 //Fetch
@@ -40,3 +43,25 @@ export const deleteUserStartThunk = (id) => {
 
     }
 }
+
+//Create
+export const createUserStartThunk = (user) => {
+    return async (dispatch, getState) => {
+        dispatch(createUserRequest());
+        try {
+            const requestOptions = {
+                method: "POST",
+                headers: { "Content-Type": "application/json; charset=UTF-8" },
+                body: JSON.stringify(user),
+            };
+            const res = await fetch("https://jsonplaceholder.typicode.com/users",
+                requestOptions
+            )
+            const data = await res.json()
+            dispatch(createUserSuccess(user))
+        } catch (error){
+            dispatch(createUserFailure(error.message));
+        }
+    }
+}
+

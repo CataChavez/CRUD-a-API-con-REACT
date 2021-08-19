@@ -5,6 +5,9 @@ import {
     DELETE_USER_FAILURE,
     DELETE_USER_SUCCESS,
     DELETE_USER_START,
+    CREATE_USER_FAILURE,
+    CREATE_USER_SUCCESS,
+    CREATE_USER_REQUEST
 } from './constants';
 
 //fetch
@@ -37,4 +40,19 @@ export const deleteUserFailure = (errorMessage) => ({
     payload: errorMessage,
 })
 
+//create
+export const createUserRequest = () => ({
+    type: CREATE_USER_REQUEST,
+})
 
+export const createUserSuccess = (user) => ({
+    type: CREATE_USER_SUCCESS,
+    payload: user
+})
+
+export const createUserFailure = (errorMessage) => ({
+    type: CREATE_USER_FAILURE,
+    payload: errorMessage,
+});
+
+//Update

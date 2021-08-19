@@ -21,16 +21,16 @@ const UserDelete = () => {
         setUser(user)
         }, [])
 
-        return (
+    return (
 
-            <div className="confirm-delete">
-                ¿Estas seguro que quieres borrar a {user.name}?
-                <div>
-                    <button className="btn btn-light" onClick={handlerOnDelete}>Si</button>
-                </div>
-            </div>            
+        <div className="confirm-delete">
+            ¿Estas seguro que quieres borrar a {user.name}?
+            <div>
+                <button className="btn btn-light" onClick={handlerOnDelete}>Si</button>
+            </div>
+        </div>            
 
-        )
+    )
 
 }
 
