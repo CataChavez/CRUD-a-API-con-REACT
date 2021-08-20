@@ -12,7 +12,7 @@ const UserCreate = () => {
     
     const handlerOnSubmit = (event) => {
         event.preventDefault()
-        dispatch(createUserStartThunk({ name: name, id: new Date().getTime() }))
+        dispatch(createUserStartThunk({ name: name }))
         history.push("/")
     }
     
@@ -27,9 +27,7 @@ const UserCreate = () => {
                 placeHolder="Agregar nuevo Usuario"
                 className="form-control"
                 />
-
             <button onClick={handlerOnSubmit} className="btn btn-success">Agregar</button>
-{/*             {users.length > 0 && users.map((user) => <div>{user.name}</div>)} */}
         </div>
     )
 }

@@ -7,7 +7,11 @@ import {
     deleteUserSuccess,
     createUserRequest,
     createUserSuccess,
-    createUserFailure
+    createUserFailure,  
+    updateUserRequest,
+    updateUserSuccess,
+    updateUserFailure,
+
 } from './actions';
 
 //Fetch
@@ -45,7 +49,7 @@ export const deleteUserStartThunk = (id) => {
 }
 
 //Create
-export const createUserStartThunk = (user) => {
+export const createUserStartThunk = (user) => { //este user lo envía como objeto
     return async (dispatch, getState) => {
         dispatch(createUserRequest());
         try {
@@ -58,9 +62,29 @@ export const createUserStartThunk = (user) => {
                 requestOptions
             )
             const data = await res.json()
-            dispatch(createUserSuccess(user))
+            dispatch(createUserSuccess(data))
         } catch (error){
             dispatch(createUserFailure(error.message));
+        }
+    }
+}
+//update
+export const updateUserStartThunk = (user) => { //este user lo envía como objeto
+    return async (dispatch) => {
+        dispatch(updateUserRequest());
+        try {
+            const requestOptions = {
+                method: "PUT",
+                headers: { "Content-Type": "application/json; charset=UTF-8" },
+                body: JSON.stringify(user),
+            };
+            const res = await fetch(`https://jsonplaceholder.typicode.com/users/${user.id}`,
+                requestOptions
+            )
+            const data = await res.json()
+            dispatch(updateUserSuccess(data))
+        } catch (error){
+            dispatch(updateUserFailure(error.message));
         }
     }
 }

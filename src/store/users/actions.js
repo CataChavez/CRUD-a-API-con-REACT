@@ -7,8 +7,13 @@ import {
     DELETE_USER_START,
     CREATE_USER_FAILURE,
     CREATE_USER_SUCCESS,
-    CREATE_USER_REQUEST
+    CREATE_USER_REQUEST,
+    UPDATE_USER_FAILURE,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_REQUEST,
 } from './constants';
+
+import { store } from '../index'
 
 //fetch
 export const fetchUsersStart = () => ({
@@ -45,7 +50,7 @@ export const createUserRequest = () => ({
     type: CREATE_USER_REQUEST,
 })
 
-export const createUserSuccess = (user) => ({
+export const createUserSuccess = (user) => ({ // envía el usuario en el payload
     type: CREATE_USER_SUCCESS,
     payload: user
 })
@@ -56,3 +61,23 @@ export const createUserFailure = (errorMessage) => ({
 });
 
 //Update
+export const updateUserRequest = () => ({
+    type: UPDATE_USER_REQUEST,
+})
+
+export const updateUserSuccess = (editedUser) => { // este llego de afuera
+    const { users : usuarios } = store.getState()//obtenemos los users como "usuarios", del store en este caso del index
+    const users = usuarios.data // renombramos users un nuevo arreglo?
+    const  indexEdit = users.findIndex(user => user.id === editedUser.id) //buscamos el usuario que hay que manipular donde el id sea igual al de usuario que llega
+    users[indexEdit] = editedUser
+    return ({
+        type: UPDATE_USER_SUCCESS,
+        payload: users
+    })
+}
+
+export const updateUserFailure = (errorMessage) => ({
+    type: UPDATE_USER_FAILURE,
+    payload: errorMessage,
+});
+

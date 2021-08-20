@@ -3,13 +3,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import {fetchUsersStartThunk } from '../../store/users/thunks'
 import { Link } from 'react-router-dom'
 
+
 const UserContainer = () => {
-    const users = useSelector(state => state.users.data);
+    const { data : users, isLoading } = useSelector(state => state.users);// destructuramos el objeto y obtenemos los usuarios y is loading
     const dispatch = useDispatch()
     
+    
     useEffect(() => {
+        if (isLoading === 'iddle')
         dispatch(fetchUsersStartThunk())
-    }, [])
+    }, [isLoading, dispatch])
+
     return(
         <div className="container" >
             <div>
@@ -23,7 +27,7 @@ const UserContainer = () => {
                             {user.name}
                         </h4>
                         <div className="col-3">
-                            <Link> 
+                            <Link to={`/users/update/${user.id}`}> 
                                 <button className="btn btn-warning">Edit</button>
                             </Link>
                             <Link  to={`/users/delete/${user.id}`}>

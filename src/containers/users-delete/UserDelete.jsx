@@ -12,7 +12,7 @@ const UserDelete = () => {
     const history = useHistory()
 
     const handlerOnDelete = () => {
-        dispatch(deleteUserStartThunk(parseInt(id)))
+        dispatch(deleteUserStartThunk(parseInt(id))) //despacha una promesa que esta en el thunk
         history.push("/")
     }
 
