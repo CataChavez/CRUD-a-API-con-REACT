@@ -1,7 +1,5 @@
-import userEvent from "@testing-library/user-event";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { createUserRequest } from "../../store/users/actions";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { createUserStartThunk } from "../../store/users/thunks";
 
