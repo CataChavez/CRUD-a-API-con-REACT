@@ -15,7 +15,7 @@ const UserUpdate = () => {
  
     useEffect(() => {
         const user = users.find(user => user.id === parseInt(id))
-        setName(user.name)//justo despues que se monta el componente definimos el nombre
+        setName(user.name)//justo despues que se monta el componente definimos el nombre, toma el nombre del imput
     }, [users, id]) //dependemos de estas dependencias
 
     const handlerOnUpdate = (event) => {

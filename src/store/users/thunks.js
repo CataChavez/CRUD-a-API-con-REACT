@@ -21,7 +21,9 @@ export const fetchUsersStartThunk = () => {
         if (users.data.length > 10){ return; }
         dispatch(fetchUsersStart());
         try {
-            const response = await fetch("https://jsonplaceholder.typicode.com/users");
+            const response = await fetch("https://jsonplaceholder.typicode.com/users",{
+                mode: 'no-cors'
+            });
             const data = await response.json();
             dispatch(fetchUsersSucces(data));
         }
